@@ -17,7 +17,7 @@ const BOOKS_DATA = [
         year: 1926,
         genre: "Roman",
         file: "./kitob2.pdf",
-        preview: "images/kitob2.jpg",
+        preview: "./kitob2.jpg",
         description: "O'zbek adabiyotining birinchi romani. Sevgi va vatan mavzusidagi asosiy tarixiy roman."
     },
     {
