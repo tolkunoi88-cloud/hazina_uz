@@ -1,0 +1,71 @@
+1. 2 + 3 × 4 = ?
+A) 20
+B) 14
+C) 16
+D) 12
+
+2. Agar a = 5, b = 3 bo'lsa, a² - b² = ?
+A) 16
+B) 34
+C) 4
+D) 22
+
+3. √144 = ?
+A) 11
+B) 12
+C) 13
+D) 14
+
+4. Uchburchak perimetri 36 sm, tomonlari teng bo'lsa, bir tomoni necha sm?
+A) 9
+B) 12
+C) 6
+D) 18
+
+5. 15% dan 200 = ?
+A) 25
+B) 30
+C) 35
+D) 40
+
+6. Doiraning yuzi π·r². r = 7 bo'lsa, yuzi qancha? (π≈3.14)
+A) 153.86
+B) 43.96
+C) 21.98
+D) 307.72
+
+7. 2x + 6 = 14 bo'lsa, x = ?
+A) 3
+B) 4
+C) 5
+D) 6
+
+8. -5 + 12 - 3 = ?
+A) 2
+B) 4
+C) -4
+D) 6
+
+9. 3/4 + 1/4 = ?
+A) 4/8
+B) 4/4
+C) 2/4
+D) 3/8
+
+10. 100 dan 40% ni ayiring:
+A) 40
+B) 50
+C) 60
+D) 70
+
+To'g'ri javoblar:
+1B
+2A
+3B
+4B
+5B
+6A
+7B
+8B
+9B
+10C
