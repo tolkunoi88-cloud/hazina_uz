@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0d0f1a" />
+  <meta name="description"
+    content="HazinaUz — Online kitoblar va sertifikat testlari platformasi. O'zbek tilida bilim xazinasi." />
+  <title>HazinaUz — Bilim Xazinasi</title>
+
+  <!-- Telegram WebApp SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════
+     LOADING SCREEN
+══════════════════════════════════════════ -->
+  <div id="loading-screen">
+    <div class="loading-logo">🪙</div>
+    <div class="loading-name">HazinaUz</div>
+    <div class="loading-bar-wrap">
+      <div class="loading-bar"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+     MAIN APP
+══════════════════════════════════════════ -->
+  <div id="app">
+
+    <!-- ── Top Header ── -->
+    <header class="top-header">
+      <div class="header-logo">
+        <div class="header-logo-icon">🪙</div>
+        <span class="header-logo-text">HazinaUz</span>
+      </div>
+      <div class="header-user" onclick="navigateTo('profile')">
+        <div class="header-avatar" id="header-avatar">H</div>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════════════════
+       PAGE: HOME
+  ══════════════════════════════════════ -->
+    <section id="page-home" class="page-section">
+
+      <!-- Hero Book Slider -->
+      <div class="hero-slider">
+        <div class="slider-container" id="slider-container">
+          <!-- Slides rendered by JS -->
+        </div>
+        <div class="slider-arrows">
+          <div class="slider-arrow" id="slider-prev">‹</div>
+          <div class="slider-arrow" id="slider-next">›</div>
+        </div>
+        <div class="slider-dots" id="slider-dots"></div>
+      </div>
+
+      <!-- Certificate Carousel -->
+      <div class="section-title">
+        <span>📜 Sertifikatlar</span>
+      </div>
+      <div class="cert-carousel-wrap">
+        <div class="cert-carousel" id="cert-carousel">
+          <!-- Cert cards rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Home Books Grid -->
+      <div class="section-title">
+        <span class="section-title-main">📚 Kitoblar</span>
+        <span class="see-all" id="home-see-all">Barchasi →</span>
+      </div>
+      <div class="home-books-grid" id="home-books-grid">
+        <!-- Book cards rendered by JS -->
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════
+       PAGE: BOOKS
+  ══════════════════════════════════════ -->
+    <section id="page-books" class="page-section">
+
+      <!-- Sticky Search Header -->
+      <div class="books-header">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="search" id="book-search-input" class="search-input" placeholder="Kitob nomi yoki muallif..."
+            autocomplete="off" spellcheck="false" />
+          <span class="search-clear" id="search-clear">✕</span>
+        </div>
+      </div>
+
+      <!-- Genre Filter Tabs -->
+      <div class="books-filter-tabs" id="genre-tabs">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- All Books Grid -->
+      <div class="all-books-grid" id="all-books-grid">
+        <!-- Rendered by JS -->
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════
+       PAGE: QUIZ / SAVOLLAR
+  ══════════════════════════════════════ -->
+    <section id="page-quiz" class="page-section" style="overflow-y:auto;height:calc(100dvh - 64px - 70px);">
+
+      <div class="quiz-page-wrap">
+
+        <!-- Step 1: Certificate Selection -->
+        <div id="quiz-step-cert-select">
+          <div class="section-title">
+            <span class="section-title-main">🎓 Sertifikat Tanlang</span>
+          </div>
+          <div class="cert-type-grid" id="cert-type-grid">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Imtiyoz Subjects (conditional) -->
+          <div id="imtiyoz-subjects" class="imtiyoz-subjects">
+            <div style="padding: 0 16px 6px;">
+              <div class="subject-title">Fan tanlang:</div>
+              <div class="subject-chips" id="subject-chips"></div>
+            </div>
+          </div>
+
+          <!-- Level Selector -->
+          <div id="level-selector" class="level-selector">
+            <div style="padding: 0 16px 6px;">
+              <div class="subject-title">Daraja tanlang:</div>
+              <div class="level-list" id="level-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Result Panel (floating above questions) -->
+        <div id="quiz-result-panel" class="quiz-result"
+          style="position:relative;z-index:10;background:var(--bg-primary);padding:24px 16px;">
+          <div class="result-circle">
+            <div class="result-score" id="result-score">0%</div>
+            <div class="result-label">Natija</div>
+          </div>
+          <div class="result-title" id="result-title-text">🏆 Ajoyib!</div>
+          <div class="result-subtitle" id="result-total-label">0 ta to'g'ri</div>
+
+          <div class="result-breakdown">
+            <div class="result-stat correct">
+              <div class="result-stat-num" id="result-correct-num">0</div>
+              <div class="result-stat-lbl">✅ To'g'ri</div>
+            </div>
+            <div class="result-stat wrong">
+              <div class="result-stat-num" id="result-wrong-num">0</div>
+              <div class="result-stat-lbl">❌ Xato</div>
+            </div>
+          </div>
+
+          <div class="result-actions">
+            <button class="btn-primary" id="quiz-retry-btn">🔄 Qaytadan urinish</button>
+            <button class="btn-secondary" id="quiz-new-test-btn">📋 Yangi test</button>
+          </div>
+
+          <div class="divider"></div>
+          <div style="font-size:13px;color:var(--text-muted);text-align:center;padding:0 16px 8px;">
+            Quyida har bir savolning to'g'ri va noto'g'ri javoblari ko'rsatilgan
+          </div>
+        </div>
+
+        <!-- Step 2: Quiz Area -->
+        <div id="quiz-step-quiz-area" class="quiz-area">
+          <!-- Quiz Header -->
+          <div class="quiz-header-bar">
+            <span class="quiz-progress-label" id="quiz-progress-label">0 / 0</span>
+            <div class="quiz-progress-track">
+              <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div>
+            </div>
+          </div>
+
+          <!-- Questions -->
+          <div class="quiz-question-wrap" id="quiz-questions-wrap">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Submit -->
+          <button class="quiz-submit-btn" id="quiz-submit-btn" disabled>
+            ✅ Tekshirish
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+       PAGE: PROFILE
+  ══════════════════════════════════════ -->
+    <section id="page-profile" class="page-section">
+      <div class="profile-page">
+
+        <!-- Profile Hero -->
+        <div class="profile-hero">
+          <div class="profile-avatar-wrap">
+            <div class="profile-avatar" id="profile-avatar">H</div>
+            <div class="profile-status-dot"></div>
+          </div>
+          <div class="profile-name" id="profile-name">Foydalanuvchi</div>
+          <div class="profile-username" id="profile-username">@hazina_uz</div>
+
+          <div class="profile-stats">
+            <div class="profile-stat">
+              <div class="profile-stat-num">📚</div>
+              <div class="profile-stat-lbl">Kitoblar</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-num">🎓</div>
+              <div class="profile-stat-lbl">Testlar</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-num">⭐</div>
+              <div class="profile-stat-lbl">Saqlangan</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Links Section -->
+        <div class="profile-section-title">Bo'limlar</div>
+        <div class="profile-links">
+
+          <div class="profile-link-btn" id="btn-help">
+            <div class="link-icon-wrap blue">🆘</div>
+            <div class="link-text">
+              <div class="link-title">Yordam</div>
+              <div class="link-subtitle">Savol va murojaat</div>
+            </div>
+            <span class="link-arrow">›</span>
+          </div>
+
+          <div class="profile-link-btn" id="btn-collab">
+            <div class="link-icon-wrap green">🤝</div>
+            <div class="link-text">
+              <div class="link-title">Hamkorlik</div>
+              <div class="link-subtitle">Admin bilan bog'laning</div>
+            </div>
+            <span class="link-arrow">›</span>
+          </div>
+
+          <div class="profile-link-btn" id="btn-dev">
+            <div class="link-icon-wrap purple">👨‍💻</div>
+            <div class="link-text">
+              <div class="link-title">Dasturchi</div>
+              <div class="link-subtitle">Texnik yordam</div>
+            </div>
+            <span class="link-arrow">›</span>
+          </div>
+
+          <div class="profile-link-btn" id="btn-channel">
+            <div class="link-icon-wrap gold">📢</div>
+            <div class="link-text">
+              <div class="link-title">Rasmiy Kanal</div>
+              <div class="link-subtitle">Yangiliklar va xabarlar</div>
+            </div>
+            <span class="link-arrow">›</span>
+          </div>
+
+        </div>
+
+        <!-- App Info -->
+        <div class="profile-section-title">Ilova haqida</div>
+        <div style="padding: 0 16px 24px;">
+          <div
+            style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:16px;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:13px;color:var(--text-secondary);">Versiya</span>
+              <span class="badge badge-gold">v1.0.0</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:13px;color:var(--text-secondary);">Kitoblar soni</span>
+              <span style="font-size:13px;color:var(--text-primary);font-weight:600;" id="total-books-count">—</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:13px;color:var(--text-secondary);">Sertifikatlar</span>
+              <span style="font-size:13px;color:var(--text-primary);font-weight:600;">4 tur</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+       BOTTOM NAVIGATION
+  ══════════════════════════════════════ -->
+    <nav class="bottom-nav">
+
+      <div class="nav-item" id="nav-home">
+        <div class="nav-icon">🏠</div>
+        <div class="nav-label">Asosiy</div>
+      </div>
+
+      <div class="nav-item" id="nav-books">
+        <div class="nav-icon">📚</div>
+        <div class="nav-label">Kitoblar</div>
+      </div>
+
+      <div class="nav-item" id="nav-quiz">
+        <div class="nav-icon">❓</div>
+        <div class="nav-label">Savollar</div>
+      </div>
+
+      <div class="nav-item" id="nav-profile">
+        <div class="nav-icon">👤</div>
+        <div class="nav-label">Profil</div>
+      </div>
+
+    </nav>
+
+  </div><!-- #app -->
+
+  <!-- ══════════════════════════════════════
+     BOOK READER (PDF Viewer overlay)
+══════════════════════════════════════ -->
+  <div id="book-reader" class="book-reader">
+    <div class="reader-header">
+      <div class="reader-back-btn" id="reader-back-btn">←</div>
+      <div class="reader-title" id="reader-title">Kitob</div>
+    </div>
+    <div class="reader-frame-wrap">
+      <div class="reader-loading" id="reader-loading">
+        <div class="reader-loading-icon">⏳</div>
+        <div style="font-size:14px;color:var(--text-secondary);">Yuklanmoqda...</div>
+      </div>
+      <!-- TXT Content -->
+      <div id="reader-content" class="reader-txt-content" style="display:none;"></div>
+      <!-- PDF fallback -->
+      <iframe id="reader-iframe" class="reader-iframe" title="PDF Reader" allowfullscreen
+        style="display:none;"></iframe>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     TOAST NOTIFICATION
+══════════════════════════════════════ -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ══════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════ -->
+  <script src="js/books.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    // Total books count for profile
+    document.addEventListener('DOMContentLoaded', () => {
+      const el = document.getElementById('total-books-count');
+      if (el) el.textContent = BOOKS_DATA.length + ' ta';
+    });
+  </script>
+
+</body>
+
+</html>
