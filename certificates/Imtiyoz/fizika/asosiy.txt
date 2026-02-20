@@ -1,0 +1,71 @@
+1. Yorug'lik tezligi qancha?
+A) 200,000 km/s
+B) 300,000 km/s
+C) 400,000 km/s
+D) 100,000 km/s
+
+2. F = ma formulasida "a" nima?
+A) Massa
+B) Kuch
+C) Tezlanish
+D) Tezlik
+
+3. 1 Joule nima?
+A) 1 kg·m/s
+B) 1 kg·m²/s²
+C) 1 N·m
+D) B va C to'g'ri
+
+4. Elektr zanjirda ketma-ket ulangan 2 ta qarshilik R1=4 Ω, R2=6 Ω. Umumiy qarshilik?
+A) 2 Ω
+B) 24 Ω
+C) 10 Ω
+D) 1.5 Ω
+
+5. Gravitatsion doimiy G ≈ ?
+A) 9.8 m/s²
+B) 6.67×10⁻¹¹ N·m²/kg²
+C) 3×10⁸ m/s
+D) 1.6×10⁻¹⁹ C
+
+6. Atom tuzilishida elektronlar qayerda joylashgan?
+A) Yadroda
+B) Proton ichida
+C) Yadro atrofidagi orbitallarda
+D) Neytron ichida
+
+7. Issiqlik sig'imi formulasi:
+A) Q = mgt
+B) Q = mcΔT
+C) Q = mgh
+D) Q = mv²/2
+
+8. Qaysi hodisa kvant mexanikasi bilan tushuntiriladi?
+A) Erkin tushish
+B) Fotoeffekt
+C) Mexanik to'lqin
+D) Suyuqlik oqimi
+
+9. Magnit maydoni birligi:
+A) Volt
+B) Amper
+C) Tesla
+D) Om
+
+10. p = mv formulasida p nima?
+A) Quvvat
+B) Impuls
+C) Bosim
+D) Energiya
+
+To'g'ri javoblar:
+1B
+2C
+3D
+4C
+5B
+6C
+7B
+8B
+9C
+10B
